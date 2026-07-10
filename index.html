@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Statut</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="top-text">
+            <span class="left">MESSAGE</span>
+            <span class="right">BANQUE</span>
+        </div>
+        <h1>LE STATUT</h1>
+    </header>
+    
+    <main>
+        <div class="gallery">
+            <figure>
+                <img src="img/Homme1.jpg" alt="Mr Koukchen Rachid" onclick="openModal(this)">
+                <figcaption>MR KOUKCHEN<br>RACHID</figcaption>
+            </figure>
+            <figure>
+                <img src="img/Conv.jpg" alt="Argument" onclick="openModal(this)">
+                <figcaption>ARGUMENT</figcaption>
+            </figure>
+            <figure>
+                <img src="img/Homme2.jpg" alt="Maître Zevenboom Jan" onclick="openModal(this)">
+                <figcaption>MAÎTRE ZEVENBOOM<br>JAN</figcaption>
+            </figure>
+            <figure>
+                <img src="img/Paysage.jpg" alt="Taipei" onclick="openModal(this)">
+                <figcaption>TAIPEI</figcaption>
+            </figure>
+        </div>
+    </main>
+
+    <!-- Modal for image enlargement -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="expandedImg">
+    </div>
+
+    <script>
+        function openModal(img) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("expandedImg");
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
