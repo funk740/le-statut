@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="top-text">
-            <a href="mailto:koukchen@hotmail.com" class="top-link top-link--message">CONTACT</a>
+            <a id="contactButton" href="tel:+33609520182" class="top-link top-link--message" onclick="handleContactClick(event)">CONTACT</a>
             <a href="https://paypal.me/KOUKCHEN" class="top-link top-link--bank" target="_blank" rel="noopener noreferrer">BANQUE</a>
         </div>
         <h1>LE STATUT</h1>
@@ -34,17 +34,60 @@
         <img class="modal-content" id="expandedImg">
     </div>
 
+    <!-- Contact popup for non-phone platforms -->
+    <div id="contactModal" class="modal contact-modal" onclick="closeContactModal(event)">
+        <div class="contact-modal-content" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+            <button class="close contact-close" aria-label="Fermer">&times;</button>
+            <h2 id="contactTitle">Contact</h2>
+            <p>Appelez-nous au <a href="tel:+33609520182">+33 6 09 52 01 82</a></p>
+            <p>Vous pouvez copier ce numéro si votre appareil ne supporte pas l'appel direct.</p>
+            <button class="top-link contact-copy" type="button" onclick="copyPhoneNumber(event)">Copier le numéro</button>
+        </div>
+    </div>
+
     <script>
+        const phoneNumber = '+33609520182';
+
+        function isPhoneCapable() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        function handleContactClick(event) {
+            if (!isPhoneCapable()) {
+                event.preventDefault();
+                openContactModal();
+            }
+        }
+
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeContactModal(event) {
+            if (event.target.classList.contains('contact-modal') || event.target.classList.contains('close')) {
+                document.getElementById('contactModal').style.display = 'none';
+            }
+        }
+
+        function copyPhoneNumber(event) {
+            event.stopPropagation();
+            navigator.clipboard.writeText(phoneNumber).then(() => {
+                alert('Numéro copié : ' + phoneNumber);
+            }).catch(() => {
+                alert('Impossible de copier automatiquement. Veuillez copier le numéro manuellement.');
+            });
+        }
+
         function openModal(img) {
-            var modal = document.getElementById("imageModal");
-            var modalImg = document.getElementById("expandedImg");
-            modal.style.display = "flex";
+            var modal = document.getElementById('imageModal');
+            var modalImg = document.getElementById('expandedImg');
+            modal.style.display = 'flex';
             modalImg.src = img.src;
         }
 
         function closeModal() {
-            var modal = document.getElementById("imageModal");
-            modal.style.display = "none";
+            var modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
         }
     </script>
 </body>
