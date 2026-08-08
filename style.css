@@ -52,9 +52,8 @@ h1 {
 
 .gallery {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 40px;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 20px;
@@ -66,12 +65,13 @@ figure {
     flex-direction: column;
     align-items: center;
     width: 100%;
+    max-width: 900px;
 }
 
 figure img {
     width: 100%;
-    max-width: 250px;
-    height: 300px; /* Setting a fixed height for consistent look if images have different ratios */
+    max-width: 780px;
+    height: auto;
     object-fit: contain;
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -200,32 +200,17 @@ figcaption {
     width: 100%;
 }
 
-    .gallery {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    
-    figure {
-        width: 45%;
-}
-
 /* Desktop Layout */
 @media (min-width: 1024px) {
     .gallery {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-start;
-        flex-wrap: nowrap;
+        padding: 0 40px;
     }
 
     figure {
-        width: 22%;
+        max-width: 1000px;
     }
     
     figure img {
-        height: auto;
-        aspect-ratio: 3/4;
-        object-fit: cover;
+        max-width: 900px;
     }
 }
