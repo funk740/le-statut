@@ -9,13 +9,13 @@ body {
 }
 
 header {
-    margin-bottom: 40px;
-    padding: 0 40px;
+    margin-bottom: 30px;
+    padding: 0 15px;
 }
 h1 {
-    font-size: 5rem;
+    font-size: 3rem;
     font-weight: normal;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     margin: 0 0 20px 0;
     color: #2c2c2c;
 }
@@ -206,15 +206,27 @@ figcaption {
 
 /* Responsive Layout */
 
-/* Tablet Layout: 2 columns */
+/* Tablet Layout */
 @media (min-width: 600px) {
+    h1 {
+        font-size: 4.5rem;
+    }
+    header {
+        padding: 0 30px;
+    }
     figure {
         width: calc(50% - 15px); /* Account for gap */
     }
 }
 
-/* Desktop Layout: 3 columns */
+/* Desktop Layout */
 @media (min-width: 900px) {
+    h1 {
+        font-size: 5rem;
+    }
+    header {
+        padding: 0 40px;
+    }
     figure {
         width: calc(33.333% - 20px); /* Account for gap */
     }
