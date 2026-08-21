@@ -8,82 +8,80 @@
 </head>
 <body>
     <header>
-        <div class="top-text">
-            <a id="contactButton" href="tel:+33609520182" class="top-link top-link--message" onclick="handleContactClick(event)">CONTACT</a>
-            <a href="https://paypal.me/KOUKCHEN" class="top-link top-link--bank" target="_blank" rel="noopener noreferrer">BANQUE</a>
-        </div>
         <h1>LE STATUT</h1>
+        <div class="header-buttons">
+            <button id="contactBtn" class="action-btn" onclick="openContactModal()">CONTACT</button>
+            <a href="https://www.paypal.com/paypalme/KOUKCHEN" class="action-btn banque-btn" target="_blank">BANQUE</a>
+        </div>
     </header>
     
     <main>
         <div class="gallery">
             <figure>
-                <img src="img/Paysage.jpg" alt="Taipei" onclick="openModal(this)">
+                <img src="img/Affaire-pénale.jpg" alt="Affaire pénale" onclick="openImageModal(this)">
+            </figure>
+            <figure>
+                <img src="img/Homme2.jpg" alt="Maître Zevenboom Jan" onclick="openImageModal(this)">
+                <figcaption>MAÎTRE ZEVENBOOM JAN</figcaption>
+            </figure>
+            <figure>
+                <img src="img/Moscow.jpg" alt="Moscou" onclick="openImageModal(this)">
+                <figcaption>MOSCOU</figcaption>
+            </figure>
+            <figure>
+                <img src="img/Conv.jpg" alt="Argument" onclick="openImageModal(this)">
+                <figcaption>ARGUMENT</figcaption>
+            </figure>
+            <figure>
+                <img src="img/Homme1.jpg" alt="Mr Koukchen Rachid" onclick="openImageModal(this)">
+                <figcaption>MR KOUKCHEN RACHID</figcaption>
+            </figure>
+            <figure>
+                <img src="img/Paysage.jpg" alt="Taipei" onclick="openImageModal(this)">
                 <figcaption>TAIPEI</figcaption>
             </figure>
         </div>
     </main>
 
     <!-- Modal for image enlargement -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
+    <div id="imageModal" class="modal" onclick="closeImageModal()">
         <span class="close">&times;</span>
         <img class="modal-content" id="expandedImg">
     </div>
 
-    <!-- Contact popup for non-phone platforms -->
-    <div id="contactModal" class="modal contact-modal" onclick="closeContactModal(event)">
-        <div class="contact-modal-content" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
-            <button class="close contact-close" aria-label="Fermer">&times;</button>
-            <h2 id="contactTitle">Contact</h2>
-            <p>Appelez-nous au <a href="tel:+33609520182">+33 6 09 52 01 82</a></p>
-            <p>Vous pouvez copier ce numéro si votre appareil ne supporte pas l'appel direct.</p>
-            <button class="top-link contact-copy" type="button" onclick="copyPhoneNumber(event)">Copier le numéro</button>
+    <!-- Modal for Contact Info -->
+    <div id="contactModal" class="modal contact-modal-overlay" onclick="closeContactModal(event)">
+        <div class="contact-card" onclick="event.stopPropagation()">
+            <span class="close-contact" onclick="closeContactModal(event)">&times;</span>
+            <h2>Informations de contact</h2>
+            <p><strong>Téléphone :</strong> 00.33.6.09.52.01.82</p>
+            <p><strong>E-mail :</strong> koukchen@hotmail.com</p>
         </div>
     </div>
 
     <script>
-        const phoneNumber = '+33609520182';
-
-        function isPhoneCapable() {
-            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        }
-
-        function handleContactClick(event) {
-            if (!isPhoneCapable()) {
-                event.preventDefault();
-                openContactModal();
-            }
-        }
-
-        function openContactModal() {
-            document.getElementById('contactModal').style.display = 'flex';
-        }
-
-        function closeContactModal(event) {
-            if (event.target.classList.contains('contact-modal') || event.target.classList.contains('close')) {
-                document.getElementById('contactModal').style.display = 'none';
-            }
-        }
-
-        function copyPhoneNumber(event) {
-            event.stopPropagation();
-            navigator.clipboard.writeText(phoneNumber).then(() => {
-                alert('Numéro copié : ' + phoneNumber);
-            }).catch(() => {
-                alert('Impossible de copier automatiquement. Veuillez copier le numéro manuellement.');
-            });
-        }
-
-        function openModal(img) {
-            var modal = document.getElementById('imageModal');
-            var modalImg = document.getElementById('expandedImg');
-            modal.style.display = 'flex';
+        function openImageModal(img) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("expandedImg");
+            modal.style.display = "flex";
             modalImg.src = img.src;
         }
 
-        function closeModal() {
-            var modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
+        function closeImageModal() {
+            var modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+
+        function openContactModal() {
+            var modal = document.getElementById("contactModal");
+            modal.style.display = "flex";
+        }
+
+        function closeContactModal(event) {
+            var modal = document.getElementById("contactModal");
+            // If the event is provided, we can check where the click occurred, 
+            // but for simplicity it closes when the overlay or the X is clicked.
+            modal.style.display = "none";
         }
     </script>
 </body>
