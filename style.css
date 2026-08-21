@@ -50,17 +50,17 @@ h1 {
 }
 
 .banque-btn {
-    background-color: transparent;
-    color: #666;
-    border: 1px solid #ccc;
+    background-color: #333;
+    color: #fff;
+    border: none;
     font-size: 14px;
     padding: 6px 15px;
     width: 150px;
 }
 
 .banque-btn:hover {
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: #555;
+    color: #fff;
 }
 
 /* Updated Gallery: Spaced out with rounded corners */
